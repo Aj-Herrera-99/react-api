@@ -1,6 +1,14 @@
+import axios from "axios";
 import React from "react";
 
-function Card({ pokemon }) {
+function Card({ pokemon, setInitialPokedex }) {
+    const removeCard = () => {
+        axios
+            .delete(`http://localhost:3000/pokedex/${pokemon.id}`)
+            .then((res) => {
+                setInitialPokedex(res.data);
+            });
+    };
     const imgPath =
         pokemon.id < 10
             ? `http://localhost:3000/pokedex/images/00${pokemon.id}.png`
@@ -8,17 +16,23 @@ function Card({ pokemon }) {
             ? `http://localhost:3000/pokedex/images/0${pokemon.id}.png`
             : `http://localhost:3000/pokedex/images/${pokemon.id}.png`;
     return (
-        <div className="flex flex-col items-center bg-blue-300 aspect-square">
-            <div className="h-full p-5">
+        <div className="relative flex flex-col items-center p-3 bg-blue-100 rounded-lg aspect-square hover:bg-blue-200">
+            <div className="h-full p-4">
                 <img
                     src={imgPath}
                     alt={pokemon.name.english}
                     className="object-contain w-full h-full"
                 />
             </div>
-            <span className="text-3xl font-semibold">
+            <span className="text-xl font-light tracking-wider uppercase">
                 {pokemon.name.english}
             </span>
+            <div
+                onClick={removeCard}
+                className="absolute top-0 z-10 text-3xl font-semibold text-red-600 transition-all scale-75 cursor-pointer right-3 hover:scale-110"
+            >
+                x
+            </div>
         </div>
     );
 }
