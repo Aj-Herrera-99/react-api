@@ -4,25 +4,29 @@ import Card from "./Card";
 
 function Main() {
     const [initialPokedex, setInitialPokedex] = useState([]);
-    const [pokedex, setPokedex] = useState([]);
+    const [filteredPokedex, setFilteredPokedex] = useState([]);
+
+    // fetch iniziale
     useEffect(() => {
         axios.get("http://localhost:3000/pokedex").then((res) => {
             console.log(res.data);
             setInitialPokedex(res.data);
         });
     }, []);
+
+    // quando i dati iniziali si aggiornano, si aggiorna anche quello filtrato
     useEffect(() => {
-        console.log("useEffect")
-        setPokedex(initialPokedex);
+        setFilteredPokedex(initialPokedex);
     }, [initialPokedex]);
+
     return (
         <main className="px-6">
             <SearchBar
                 initialPokedex={initialPokedex}
-                setPokedex={setPokedex}
+                setFilteredPokedex={setFilteredPokedex}
             />
             <CardsContainer>
-                {pokedex.map((pokemon) => (
+                {filteredPokedex.map((pokemon) => (
                     <Card
                         key={pokemon.id}
                         pokemon={pokemon}
@@ -42,7 +46,7 @@ function CardsContainer({ children }) {
     );
 }
 
-function SearchBar({ initialPokedex, setPokedex }) {
+function SearchBar({ initialPokedex, setFilteredPokedex }) {
     const inputRef = useRef(null);
     const handleInputChange = () => {
         const newPokedex = initialPokedex.filter((pokemon) =>
@@ -50,7 +54,7 @@ function SearchBar({ initialPokedex, setPokedex }) {
                 .toLowerCase()
                 .startsWith(inputRef.current.value.toLowerCase())
         );
-        setPokedex(newPokedex);
+        setFilteredPokedex(newPokedex);
     };
     return (
         <input
