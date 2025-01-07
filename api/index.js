@@ -6,11 +6,12 @@ const app = express();
 // global middlewares
 app.use(cors());
 app.use(express.json());
+app.use(express.static("public"));
 
 // routes
-app.get("/", (req,res) => {
-    res.send(`<h1>Ciao da server!</h1>`)
-})
+app.get("/", (req, res) => {
+    res.send(`<h1>Ciao da server!</h1>`);
+});
 
 // apertura server
 app.listen(PORT, () =>

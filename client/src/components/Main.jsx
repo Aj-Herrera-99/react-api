@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Card from "./Card";
 
 function Main() {
+    const [pokedex, setPokedex] = useState([]);
+    useEffect(()=>{},[])
     return (
         <main className="px-6">
             <CardsContainer>
