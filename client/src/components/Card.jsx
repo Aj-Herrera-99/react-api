@@ -1,9 +1,7 @@
-import React from 'react'
+import React from "react";
 
-function Card() {
-  return (
-    <div className='bg-blue-300 aspect-square'>Card</div>
-  )
+function Card({ pokemon }) {
+    return <div className="bg-blue-300 aspect-square">{pokemon.name.english}</div>;
 }
 
-export default Card
+export default Card;

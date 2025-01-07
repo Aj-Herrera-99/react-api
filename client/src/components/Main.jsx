@@ -1,16 +1,20 @@
 import React, { useEffect, useState } from "react";
+import axios from "axios";
 import Card from "./Card";
 
 function Main() {
     const [pokedex, setPokedex] = useState([]);
-    useEffect(()=>{},[])
+    useEffect(() => {
+        axios
+            .get("http://localhost:3000/pokedex")
+            .then((res) => setPokedex(res.data));
+    }, []);
     return (
         <main className="px-6">
             <CardsContainer>
-                <Card />
-                <Card />
-                <Card />
-                <Card />
+                {pokedex.map((pokemon) => (
+                    <Card key={pokemon.id} pokemon={pokemon} />
+                ))}
             </CardsContainer>
         </main>
     );
