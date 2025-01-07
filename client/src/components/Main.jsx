@@ -5,9 +5,9 @@ import Card from "./Card";
 function Main() {
     const [pokedex, setPokedex] = useState([]);
     useEffect(() => {
-        axios
-            .get("http://localhost:3000/pokedex")
-            .then((res) => setPokedex(res.data));
+        axios.get("http://localhost:3000/pokedex").then((res) => {
+            console.log(res.data), setPokedex(res.data);
+        });
     }, []);
     return (
         <main className="px-6">
