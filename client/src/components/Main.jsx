@@ -22,7 +22,7 @@ function Main() {
 
 function CardsContainer({ children }) {
     return (
-        <div className="mx-auto bg-green-400 max-w-[900px] grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 gap-3">
+        <div className="mx-auto bg-green-400 max-w-[900px] grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 gap-6">
             {children}
         </div>
     );

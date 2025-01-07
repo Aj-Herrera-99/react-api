@@ -6,11 +6,15 @@ function Card({ pokemon }) {
             ? `http://localhost:3000/pokedex/images/00${pokemon.id}.png`
             : `http://localhost:3000/pokedex/images/0${pokemon.id}.png`;
     return (
-        <div className="bg-blue-300 aspect-square">
-            {pokemon.name.english}
-            <div className="h-3/5">
-                <img src={imgPath} alt={pokemon.name.english} className="object-contain w-full h-full"/>
+        <div className="flex flex-col items-center bg-blue-300 aspect-square">
+            <div className="h-full p-5">
+                <img
+                    src={imgPath}
+                    alt={pokemon.name.english}
+                    className="object-contain w-full h-full"
+                />
             </div>
+            <span className="text-3xl font-semibold">{pokemon.name.english}</span>
         </div>
     );
 }
