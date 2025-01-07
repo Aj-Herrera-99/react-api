@@ -7,8 +7,8 @@ const app = express();
 const pokedexRouter = require("./routers/pokedexRouter");
 
 // global middlewares
-app.use(express.static("public"));
 app.use(cors());
+app.use(express.static("./public"));
 app.use(express.json());
 
 // routes
