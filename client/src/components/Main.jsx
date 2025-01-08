@@ -74,14 +74,14 @@ function OrderCards({ setPokedex }) {
                 <span>Order By:</span>
                 <select
                     ref={selectRef}
-                    className="p-1 ml-2 bg-transparent rounded-md cursor-pointer outline outline-1 [&>option]:text-black"
+                    className="p-1 ml-2 bg-transparent rounded-md cursor-pointer outline outline-1 outline-white [&>option]:text-black"
                 >
                     <option value="ascending">Ascending</option>
                     <option value="descending">Descending</option>
                 </select>
                 <ul
                     onClick={handleOrder}
-                    className="mt-2 flex flex-col gap-2 [&>li]:uppercase [&>li]:bg-blue-700 [&>li]:p-1 [&>li]:rounded-md [&>li]:tracking-wide [&>li]:font-semibold [&>li]:cursor-pointer"
+                    className="mt-2 flex flex-col gap-2 [&>li]:uppercase [&>li]:bg-blue-700 [&>li]:p-1 [&>li]:rounded-md [&>li]:tracking-wide [&>li]:font-semibold [&>li]:cursor-pointer hover:[&>li]:bg-blue-900"
                 >
                     <li>Default</li>
                     <li>Name</li>
