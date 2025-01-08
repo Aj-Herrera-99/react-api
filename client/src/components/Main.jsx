@@ -1,15 +1,14 @@
 import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import Card from "./Card";
+import { apiURL } from "../globals/glob";
 
 function Main() {
     const [pokedex, setPokedex] = useState([]);
     const [filter, setFilter] = useState("");
 
     useEffect(() => {
-        axios
-            .get("http://localhost:3000/pokedex/")
-            .then((res) => setPokedex(res.data));
+        axios.get(apiURL).then((res) => setPokedex(res.data));
     }, []);
 
     const filteredPokedex = pokedex.filter((pokemon) =>
@@ -52,7 +51,7 @@ function OrderCards({ setPokedex }) {
             const type = e.target.innerHTML;
             axios
                 .get(
-                    `http://localhost:3000/pokedex/?order=${
+                    `${apiURL}/?order=${
                         selectRef.current.value
                     }&type=${type.toLocaleLowerCase()}`
                 )

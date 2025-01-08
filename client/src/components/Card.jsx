@@ -1,23 +1,22 @@
 import axios from "axios";
 import React from "react";
+import { apiURL } from "../globals/glob";
 
 function Card({ pokemon, setPokedex }) {
     const imgPath =
         pokemon.id < 10
-            ? `http://localhost:3000/pokedex/images/00${pokemon.id}.png`
+            ? `${apiURL}/images/00${pokemon.id}.png`
             : pokemon.id < 100
-            ? `http://localhost:3000/pokedex/images/0${pokemon.id}.png`
-            : `http://localhost:3000/pokedex/images/${pokemon.id}.png`;
+            ? `${apiURL}/images/0${pokemon.id}.png`
+            : `${apiURL}/images/${pokemon.id}.png`;
 
     // al click, chiamata api per rimuovere la card
     const removeCard = () => {
-        axios
-            .delete(`http://localhost:3000/pokedex/${pokemon.id}`)
-            .then((res) => {
-                setPokedex(res.data);
-            });
+        axios.delete(`${apiURL}/${pokemon.id}`).then((res) => {
+            setPokedex(res.data);
+        });
     };
-    
+
     return (
         <div className="relative flex flex-col items-center p-3 bg-blue-100 rounded-lg aspect-square hover:bg-blue-200">
             <div className="h-full p-4">
