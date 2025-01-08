@@ -31,18 +31,14 @@ function store(req, res) {
         base[key] = parseInt(base[key]);
     }
     if (name && type && base) {
-        initialPokedex.push({
+        const newPokemon = {
             id: crypto.randomUUID(),
             name: { english: name },
             type,
             base,
-        });
-        pokedex.push({
-            id: crypto.randomUUID(),
-            name: { english: name },
-            type,
-            base,
-        });
+        };
+        initialPokedex.unshift(newPokemon);
+        pokedex.unshift(newPokemon);
         return res.status(201).json(pokedex);
     }
     res.status(400).json(pokedex);

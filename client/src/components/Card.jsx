@@ -3,12 +3,18 @@ import React from "react";
 import { apiURL } from "../globals/glob";
 
 function Card({ pokemon, setPokedex }) {
-    const imgPath =
-        pokemon.id < 10
-            ? `${apiURL}/images/00${pokemon.id}.png`
-            : pokemon.id < 100
-            ? `${apiURL}/images/0${pokemon.id}.png`
-            : `${apiURL}/images/${pokemon.id}.png`;
+    let imgPath;
+    if (isNaN(pokemon.id)) {
+        imgPath =
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQeechc1g-XhEHqmtfURsOaa3urN3CND5SsyA&s";
+    } else {
+        imgPath =
+            pokemon.id < 10
+                ? `${apiURL}/images/00${pokemon.id}.png`
+                : pokemon.id < 100
+                ? `${apiURL}/images/0${pokemon.id}.png`
+                : `${apiURL}/images/${pokemon.id}.png`;
+    }
 
     // al click, chiamata api per rimuovere la card
     const removeCard = () => {
