@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { apiURL } from "../globals/glob";
 
 const pokemonData = {
@@ -13,9 +13,9 @@ const pokemonData = {
     },
 };
 
-function PokemonForm({ setPokedex }) {
+function PokemonForm({ setPokedex, setIsClicked }) {
     const [formData, setFormData] = useState(pokemonData);
-    
+
     const handleInputChange = (e) => {
         const { name, type, value, checked } = e.target;
         const KEY = name;
@@ -35,19 +35,16 @@ function PokemonForm({ setPokedex }) {
             });
         }
     };
-    
+
     const handleSubmit = (e) => {
         e.preventDefault();
         axios.post(apiURL, formData).then((res) => {
             console.log("Nuovo pokemon aggiunto");
             setPokedex(res.data);
+            setIsClicked(false);
         });
     };
-
-    // log analitico
-    // useEffect(() => {
-    //     console.log(formData);
-    // }, [formData]);
+    
     return (
         <form
             onSubmit={handleSubmit}

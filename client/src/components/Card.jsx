@@ -6,7 +6,7 @@ function Card({ pokemon, setPokedex }) {
     let imgPath;
     if (isNaN(pokemon.id)) {
         imgPath =
-            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQeechc1g-XhEHqmtfURsOaa3urN3CND5SsyA&s";
+            "https://www.freeiconspng.com/uploads/pikachu-transparent-hd-1.png";
     } else {
         imgPath =
             pokemon.id < 10
