@@ -18,7 +18,7 @@ function Card({ pokemon, setPokedex }) {
     };
 
     return (
-        <div className="relative flex flex-col items-center p-3 bg-blue-100 rounded-lg aspect-square hover:bg-blue-200">
+        <div className="relative flex flex-col items-center p-3 bg-blue-100 rounded-lg select-none aspect-square hover:bg-blue-200">
             <div className="h-full p-4">
                 <img
                     src={imgPath}
@@ -26,7 +26,7 @@ function Card({ pokemon, setPokedex }) {
                     className="object-contain w-full h-full"
                 />
             </div>
-            <span className="text-xl font-light tracking-wider uppercase">
+            <span className="text-xl font-light tracking-wider uppercase select-text">
                 {pokemon.name.english}
             </span>
             <div

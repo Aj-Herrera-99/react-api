@@ -49,13 +49,11 @@ function OrderCards({ setPokedex }) {
         if (e.target.tagName === "LI") {
             dropDownRef.current.classList.remove("!block");
             const type = e.target.innerHTML;
-            axios
-                .get(
-                    `${apiURL}/?order=${
-                        selectRef.current.value
-                    }&type=${type.toLocaleLowerCase()}`
-                )
-                .then((res) => setPokedex(res.data));
+            const params = {
+                order: selectRef.current.value,
+                type: type.toLowerCase(),
+            };
+            axios.get(apiURL, {params}).then((res) => setPokedex(res.data));
         }
     };
     return (
