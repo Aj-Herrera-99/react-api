@@ -2,12 +2,14 @@ import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import Card from "./Card";
 import { apiURL } from "../globals/glob";
+import PokemonForm from "./PokemonForm";
 
 function Main() {
     const [pokedex, setPokedex] = useState([]);
     const [filter, setFilter] = useState("");
 
     useEffect(() => {
+        console.log(apiURL);
         axios.get(apiURL).then((res) => setPokedex(res.data));
     }, []);
 
@@ -25,6 +27,9 @@ function Main() {
                 <OrderCards setPokedex={setPokedex} />
                 <SearchBar filter={filter} onChange={handleFilterChange} />
             </div>
+            <AddForm>
+                <PokemonForm />
+            </AddForm>
             <CardsContainer>
                 {filteredPokedex.map((pokemon) => (
                     <Card
@@ -35,6 +40,21 @@ function Main() {
                 ))}
             </CardsContainer>
         </main>
+    );
+}
+
+function AddForm({ children }) {
+    const [isClicked, setIsClicked] = useState(false);
+    return (
+        <div className="relative max-w-[900px] mx-auto">
+            <div
+                onClick={() => setIsClicked((curr) => !curr)}
+                className="px-6 py-2 text-white bg-blue-500 rounded-full cursor-pointer w-fit"
+            >
+                Click here to add your Pokemon!
+            </div>
+            {isClicked && children}
+        </div>
     );
 }
 
@@ -53,7 +73,7 @@ function OrderCards({ setPokedex }) {
                 order: selectRef.current.value,
                 type: type.toLowerCase(),
             };
-            axios.get(apiURL, {params}).then((res) => setPokedex(res.data));
+            axios.get(apiURL, { params }).then((res) => setPokedex(res.data));
         }
     };
     return (
