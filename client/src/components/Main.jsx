@@ -27,8 +27,8 @@ function Main() {
                 <OrderCards setPokedex={setPokedex} />
                 <SearchBar filter={filter} onChange={handleFilterChange} />
             </div>
-            <AddForm>
-                <PokemonForm />
+            <AddForm pokedex={pokedex}>
+                <PokemonForm setPokedex={setPokedex} />
             </AddForm>
             <CardsContainer>
                 {filteredPokedex.map((pokemon) => (
@@ -43,8 +43,11 @@ function Main() {
     );
 }
 
-function AddForm({ children }) {
+function AddForm({ pokedex, children }) {
     const [isClicked, setIsClicked] = useState(false);
+    useEffect(() => {
+        setIsClicked(false);
+    }, [pokedex]);
     return (
         <div className="relative max-w-[900px] mx-auto">
             <div
