@@ -32,7 +32,7 @@ function Card({ pokemon, setPokedex }) {
             </span>
             <div
                 onClick={removeCard}
-                className="absolute top-0 z-10 text-3xl font-semibold text-red-600 transition-all scale-75 cursor-pointer right-3 hover:scale-110"
+                className="absolute top-0 p-2 text-3xl font-semibold text-red-600 transition-all scale-75 cursor-pointer right-2 hover:scale-110"
             >
                 x
             </div>
