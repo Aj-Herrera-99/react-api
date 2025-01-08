@@ -21,7 +21,7 @@ function Main() {
 
     return (
         <main className="px-10">
-            <div className="flex items-center justify-center gap-12">
+            <div className="flex items-center justify-center gap-8">
                 <OrderCards setPokedex={setPokedex} />
                 <SearchBar filter={filter} onChange={handleFilterChange} />
             </div>
@@ -57,12 +57,12 @@ function OrderCards({ setPokedex }) {
         }
     };
     return (
-        <div className="relative text-white bg-blue-600 rounded-full ">
+        <div className="relative text-white bg-blue-600 rounded-md">
             <div
                 onClick={handleDropDown}
-                className="flex items-center justify-center text-3xl w-[50px] aspect-square font-black cursor-pointer"
+                className="flex items-center justify-center text-2xl w-[50px] aspect-square font-black cursor-pointer"
             >
-                F
+                <i className="fa-solid fa-filter"></i>
             </div>
             <div
                 ref={dropDownRef}

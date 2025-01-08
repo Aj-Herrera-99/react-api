@@ -21,7 +21,7 @@ function index(req, res) {
 
 function destroy(req, res) {
     pokedex = pokedex.filter((pokemon) => pokemon.id != req.params.id);
-    res.json(pokedex);
+    res.status(204).json(pokedex);
 }
 
 module.exports = { index, destroy };

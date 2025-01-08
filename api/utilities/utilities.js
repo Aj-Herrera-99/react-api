@@ -6,12 +6,13 @@ function sortByQuery(pokedex, order, type) {
             x = a.name.english.toLowerCase();
             y = b.name.english.toLowerCase();
         } else {
-            Object.keys(a.base).forEach((key) => {
+            for (let key in a.base) {
                 if (key.toLowerCase() === type.toLowerCase()) {
                     x = a.base[key];
                     y = b.base[key];
+                    break;
                 }
-            });
+            }
         }
         if (x < y) {
             return order === "ascending" ? -1 : 1;
