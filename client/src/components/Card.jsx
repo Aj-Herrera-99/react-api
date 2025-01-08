@@ -1,7 +1,7 @@
 import axios from "axios";
 import React from "react";
 
-function Card({ pokemon, setInitialPokedex }) {
+function Card({ pokemon, setPokedex }) {
     const imgPath =
         pokemon.id < 10
             ? `http://localhost:3000/pokedex/images/00${pokemon.id}.png`
@@ -14,7 +14,7 @@ function Card({ pokemon, setInitialPokedex }) {
         axios
             .delete(`http://localhost:3000/pokedex/${pokemon.id}`)
             .then((res) => {
-                setInitialPokedex(res.data);
+                setPokedex(res.data);
             });
     };
     

@@ -15,8 +15,6 @@ function index(req, res) {
 
 function destroy(req, res) {
     pokedex = pokedex.filter((pokemon) => pokemon.id != req.params.id);
-    console.log(pokedex);
-    console.log(req.params.id);
     res.json(pokedex);
 }
 
