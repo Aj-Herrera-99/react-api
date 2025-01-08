@@ -1,4 +1,6 @@
-import React, { useRef } from 'react'
+import React, { useRef } from "react";
+import axios from "axios";
+import { apiURL } from "../globals/glob";
 
 function OrderPokemons({ setPokedex }) {
     const selectRef = useRef(null);
@@ -19,7 +21,7 @@ function OrderPokemons({ setPokedex }) {
         }
     };
     return (
-        <div className="relative text-white bg-blue-600 rounded-md">
+        <div className="relative text-white bg-blue-600 rounded-md hover:bg-blue-800">
             <div
                 onClick={handleDropDown}
                 className="flex items-center justify-center text-2xl w-[50px] aspect-square font-black cursor-pointer"
@@ -54,4 +56,4 @@ function OrderPokemons({ setPokedex }) {
     );
 }
 
-export default OrderPokemons
+export default OrderPokemons;

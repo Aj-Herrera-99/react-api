@@ -7,7 +7,7 @@ function BtnPokemonForm({ setPokedex }) {
         <div className="relative max-w-[900px] mx-auto">
             <div
                 onClick={() => setIsClicked((curr) => !curr)}
-                className="px-6 py-2 text-white bg-blue-500 rounded-full cursor-pointer w-fit"
+                className="px-6 py-2 text-white bg-blue-500 rounded-full cursor-pointer w-fit hover:bg-blue-700"
             >
                 Click here to add your Pokemon!
             </div>
