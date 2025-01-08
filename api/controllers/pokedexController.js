@@ -20,9 +20,8 @@ function index(req, res) {
 }
 
 function destroy(req, res) {
-    console.log("test");
     pokedex = pokedex.filter((pokemon) => pokemon.id != req.params.id);
-    res.status(204).json(pokedex);
+    res.status(200).json(pokedex);
 }
 
 function store(req, res) {

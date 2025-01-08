@@ -15,6 +15,7 @@ const pokemonData = {
 
 function PokemonForm({ setPokedex }) {
     const [formData, setFormData] = useState(pokemonData);
+    
     const handleInputChange = (e) => {
         const { name, type, value, checked } = e.target;
         const KEY = name;
@@ -34,6 +35,7 @@ function PokemonForm({ setPokedex }) {
             });
         }
     };
+    
     const handleSubmit = (e) => {
         e.preventDefault();
         axios.post(apiURL, formData).then((res) => {
@@ -42,9 +44,10 @@ function PokemonForm({ setPokedex }) {
         });
     };
 
-    useEffect(() => {
-        console.log(formData);
-    }, [formData]);
+    // log analitico
+    // useEffect(() => {
+    //     console.log(formData);
+    // }, [formData]);
     return (
         <form
             onSubmit={handleSubmit}

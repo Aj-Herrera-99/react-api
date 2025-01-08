@@ -9,10 +9,8 @@ function Main() {
     const [filter, setFilter] = useState("");
 
     useEffect(() => {
-        console.log(apiURL);
         axios.get(apiURL).then((res) => setPokedex(res.data));
     }, []);
-
     const filteredPokedex = pokedex.filter((pokemon) =>
         pokemon.name.english.toLowerCase().startsWith(filter.toLowerCase())
     );
