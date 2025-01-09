@@ -67,11 +67,14 @@ function PokemonForm({ setPokedex, setIsClicked }) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios.post(apiURL, newPokemon).then((res) => {
-            console.log("Nuovo pokemon aggiunto");
-            setPokedex(res.data);
-            setIsClicked(false);
-        });
+        setIsClicked(false);
+        axios
+            .post(apiURL, newPokemon)
+            .then((res) => {
+                console.log("Nuovo pokemon aggiunto");
+                setPokedex(res.data);
+            })
+            .catch((err) => console.error(err.response.data));
     };
 
     const handleEscClick = () => {

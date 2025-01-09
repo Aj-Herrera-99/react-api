@@ -18,9 +18,12 @@ function Card({ pokemon, setPokedex }) {
 
     // al click, chiamata api per rimuovere la card
     const removeCard = () => {
-        axios.delete(`${apiURL}/${pokemon.id}`).then((res) => {
-            setPokedex(res.data);
-        });
+        axios
+            .delete(`${apiURL}/${pokemon.id}`)
+            .then((res) => {
+                setPokedex(res.data);
+            })
+            .catch((err) => console.error(err.response.data));
     };
 
     return (

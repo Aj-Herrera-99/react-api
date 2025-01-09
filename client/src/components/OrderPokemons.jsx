@@ -17,7 +17,10 @@ function OrderPokemons({ setPokedex }) {
                 order: selectRef.current.value,
                 type: type.toLowerCase(),
             };
-            axios.get(apiURL, { params }).then((res) => setPokedex(res.data));
+            axios
+                .get(apiURL, { params })
+                .then((res) => setPokedex(res.data))
+                .catch((err) => console.error(err.response.data));
         }
     };
     return (

@@ -11,7 +11,10 @@ function Main() {
     const [filter, setFilter] = useState("");
 
     useEffect(() => {
-        axios.get(apiURL).then((res) => setPokedex(res.data));
+        axios
+            .get(apiURL)
+            .then((res) => setPokedex(res.data))
+            .catch((err) => console.error(err.response.data));
     }, []);
 
     const filteredPokedex = pokedex.filter((pokemon) =>
