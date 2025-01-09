@@ -1,4 +1,4 @@
-const { sortByQuery } = require("../utilities/utilities");
+const { sortByQuery, capitalizeStr } = require("../utilities/utilities");
 const initialPokedex = require("../data/pokedex.json");
 
 let pokedex = [...initialPokedex];
@@ -25,15 +25,15 @@ function destroy(req, res) {
 }
 
 function store(req, res) {
-    const { name, type, base } = req.body;
-    for (let key in base) {
-        base[key] = parseInt(base[key]);
-    }
+    let { name, type, base } = req.body;
     if (name && type && base) {
+        name = capitalizeStr(name);
+        type = type.map((el) => capitalizeStr(el));
+        Object.keys(base).forEach((key) => (base[key] = parseInt(base[key])));
         const newPokemon = {
             id: crypto.randomUUID(),
             name: { english: name },
-            type,
+            type: type.length ? type : ["Normal"],
             base,
         };
         initialPokedex.unshift(newPokemon);

@@ -13,7 +13,7 @@ function Main() {
     useEffect(() => {
         axios.get(apiURL).then((res) => setPokedex(res.data));
     }, []);
-    
+
     const filteredPokedex = pokedex.filter((pokemon) =>
         pokemon.name.english.toLowerCase().startsWith(filter.toLowerCase())
     );
@@ -21,6 +21,10 @@ function Main() {
     const handleFilterChange = (e) => {
         setFilter(e.target.value);
     };
+
+    useEffect(() => {
+        console.log(pokedex);
+    }, [pokedex]);
 
     return (
         <main className="px-10">

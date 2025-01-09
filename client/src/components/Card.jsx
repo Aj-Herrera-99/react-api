@@ -5,8 +5,7 @@ import { apiURL } from "../globals/glob";
 function Card({ pokemon, setPokedex }) {
     let imgPath;
     if (isNaN(pokemon.id)) {
-        imgPath =
-            "https://www.freeiconspng.com/uploads/pikachu-transparent-hd-1.png";
+        imgPath = `${apiURL}/images/placeholder.png`;
     } else {
         imgPath =
             pokemon.id < 10

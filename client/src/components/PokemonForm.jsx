@@ -14,37 +14,41 @@ const pokemonData = {
 };
 
 function PokemonForm({ setPokedex, setIsClicked }) {
-    const [formData, setFormData] = useState(pokemonData);
+    const [newPokemon, setNewPokemon] = useState(pokemonData);
 
     const handleInputChange = (e) => {
         const { name, type, value, checked } = e.target;
         const KEY = name;
         const VAL = value;
         if (type === "text") {
-            setFormData({ ...formData, [KEY]: VAL });
+            setNewPokemon({
+                ...newPokemon,
+                [KEY]: VAL,
+            });
         } else if (type === "checkbox") {
-            const types = new Set([...formData.type, VAL]);
+            console.log(e);
+            const types = new Set([...newPokemon.type, VAL]);
             if (!checked) {
                 types.delete(VAL);
             }
-            setFormData({ ...formData, [KEY]: Array.from(types) });
+            setNewPokemon({ ...newPokemon, [KEY]: Array.from(types) });
         } else if (type === "number") {
-            setFormData({
-                ...formData,
-                base: { ...formData.base, [KEY]: VAL },
+            setNewPokemon({
+                ...newPokemon,
+                base: { ...newPokemon.base, [KEY]: VAL },
             });
         }
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios.post(apiURL, formData).then((res) => {
+        axios.post(apiURL, newPokemon).then((res) => {
             console.log("Nuovo pokemon aggiunto");
             setPokedex(res.data);
             setIsClicked(false);
         });
     };
-    
+
     return (
         <form
             onSubmit={handleSubmit}
@@ -59,7 +63,7 @@ function PokemonForm({ setPokedex, setIsClicked }) {
                     id="name"
                     name="name"
                     className="p-1 rounded-md"
-                    value={formData.name}
+                    value={newPokemon.name}
                     onChange={handleInputChange}
                     required={true}
                 />
