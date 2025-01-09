@@ -1,6 +1,7 @@
 import axios from "axios";
 import React from "react";
 import { apiURL } from "../globals/glob";
+import EscBtn from "./EscBtn";
 
 function Card({ pokemon, setPokedex }) {
     let imgPath;
@@ -34,12 +35,7 @@ function Card({ pokemon, setPokedex }) {
             <span className="text-xl font-light tracking-wider uppercase select-text">
                 {pokemon.name.english}
             </span>
-            <div
-                onClick={removeCard}
-                className="absolute top-0 p-2 text-3xl font-semibold text-red-600 transition-all scale-75 cursor-pointer right-2 hover:scale-110"
-            >
-                x
-            </div>
+            <EscBtn onClick={removeCard} />
         </div>
     );
 }

@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { apiURL } from "../globals/glob";
+import EscBtn from "./EscBtn";
 
 const pokemonData = {
     name: "",
@@ -175,17 +176,6 @@ function SubmitBtn({ children }) {
         >
             {children}
         </button>
-    );
-}
-
-function EscBtn({ onClick }) {
-    return (
-        <div
-            onClick={onClick}
-            className="absolute top-0 p-2 text-3xl font-semibold text-white transition-all scale-75 cursor-pointer right-2 hover:scale-110"
-        >
-            x
-        </div>
     );
 }
 

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import PokemonForm from "./PokemonForm";
 
-function BtnPokemonForm({ setPokedex }) {
+function PokemonFormBtn({ setPokedex }) {
     const [isClicked, setIsClicked] = useState(false);
     return (
         <div className="relative">
@@ -21,4 +21,4 @@ function BtnPokemonForm({ setPokedex }) {
     );
 }
 
-export default BtnPokemonForm;
+export default PokemonFormBtn;

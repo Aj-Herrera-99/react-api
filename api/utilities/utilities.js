@@ -27,4 +27,5 @@ function sortByQuery(pokedex, order, type) {
 function capitalizeStr(str) {
     return str[0].toUpperCase() + str.slice(1).toLowerCase();
 }
+
 module.exports = { sortByQuery, capitalizeStr };

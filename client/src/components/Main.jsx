@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Card from "./Card";
 import { apiURL } from "../globals/glob";
-import BtnPokemonForm from "./BtnPokemonForm";
+import PokemonFormBtn from "./PokemonFormBtn";
 import OrderPokemons from "./OrderPokemons";
 import SearchBar from "./SearchBar";
 
@@ -32,7 +32,7 @@ function Main() {
                 <SearchBar filter={filter} onChange={handleFilterChange} />
                 <OrderPokemons setPokedex={setPokedex} />
             </div>
-            <BtnPokemonForm setPokedex={setPokedex} />
+            <PokemonFormBtn setPokedex={setPokedex} />
             <CardsContainer>
                 {filteredPokedex.map((pokemon) => (
                     <Card
