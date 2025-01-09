@@ -4,12 +4,12 @@ import PokemonForm from "./PokemonForm";
 function BtnPokemonForm({ setPokedex }) {
     const [isClicked, setIsClicked] = useState(false);
     return (
-        <div className="relative max-w-[900px] mx-auto">
+        <div className="relative">
             <div
                 onClick={() => setIsClicked((curr) => !curr)}
-                className="px-6 py-2 text-white bg-blue-500 rounded-full cursor-pointer w-fit hover:bg-blue-700"
+                className="px-6 py-2 text-2xl font-light tracking-wider text-white bg-blue-500 rounded-full cursor-pointer w-fit hover:bg-blue-700"
             >
-                Click here to add your Pokemon!
+                Add Your Pokemon!
             </div>
             {isClicked && (
                 <PokemonForm

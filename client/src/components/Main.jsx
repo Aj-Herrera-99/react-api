@@ -27,10 +27,10 @@ function Main() {
     }, [pokedex]);
 
     return (
-        <main className="px-10">
+        <main className="px-10 [&>*]:max-w-[900px] [&>*]:mx-auto">
             <div className="flex items-center justify-center gap-8">
-                <OrderPokemons setPokedex={setPokedex} />
                 <SearchBar filter={filter} onChange={handleFilterChange} />
+                <OrderPokemons setPokedex={setPokedex} />
             </div>
             <BtnPokemonForm setPokedex={setPokedex} />
             <CardsContainer>
@@ -48,7 +48,7 @@ function Main() {
 
 function CardsContainer({ children }) {
     return (
-        <div className="mx-auto my-4 max-w-[900px] grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 gap-6 my-4 sm:grid-cols-3 lg:grid-cols-4">
             {children}
         </div>
     );

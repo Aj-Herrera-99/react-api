@@ -73,11 +73,12 @@ function PokemonForm({ setPokedex, setIsClicked }) {
         });
     };
 
+    const handleEscClick = () => {
+        setIsClicked(false);
+    };
+
     return (
-        <form
-            onSubmit={handleSubmit}
-            className="absolute top-16 z-10 flex flex-col gap-3 p-4 text-white rounded-md bg-blue-950 [&_input]:text-black max-w-[90vw]"
-        >
+        <Form onSubmit={handleSubmit}>
             <div className="flex items-center gap-4">
                 <label htmlFor="name" className="text-lg uppercase">
                     Name:
@@ -90,6 +91,7 @@ function PokemonForm({ setPokedex, setIsClicked }) {
                     value={newPokemon.name}
                     onChange={handleInputChange}
                     required={true}
+                    autoFocus={true}
                 />
             </div>
             <label className="text-lg uppercase">Type:</label>
@@ -113,6 +115,18 @@ function PokemonForm({ setPokedex, setIsClicked }) {
                 ))}
             </div>
             <SubmitBtn>Generate Pokemon</SubmitBtn>
+            <EscBtn onClick={handleEscClick} />
+        </Form>
+    );
+}
+
+function Form({ children, onSubmit }) {
+    return (
+        <form
+            onSubmit={onSubmit}
+            className="absolute top-14 z-10 left-1/2 -translate-x-1/2 sm:left-auto sm:translate-x-0 flex flex-col gap-3 p-4 text-white rounded-md bg-blue-900 [&_input]:text-black max-w-[90vw]"
+        >
+            {children}
         </form>
     );
 }
@@ -121,13 +135,14 @@ function TypeInput({ type, onChange }) {
     return (
         <div className="flex gap-1">
             <input
+                className="cursor-pointer"
                 type="checkbox"
                 id={type}
                 name="type"
                 value={type}
                 onChange={onChange}
             />
-            <label htmlFor={type} className="capitalize">
+            <label htmlFor={type} className="capitalize cursor-pointer">
                 {type}
             </label>
         </div>
@@ -156,10 +171,21 @@ function SubmitBtn({ children }) {
     return (
         <button
             type="submit"
-            className="px-8 py-3 mx-auto mt-4 rounded-2xl bg-slate-900 w-fit"
+            className="px-8 py-3 mx-auto mt-4 rounded-2xl bg-slate-800 w-fit hover:bg-slate-950"
         >
             {children}
         </button>
+    );
+}
+
+function EscBtn({ onClick }) {
+    return (
+        <div
+            onClick={onClick}
+            className="absolute top-0 p-2 text-3xl font-semibold text-white transition-all scale-75 cursor-pointer right-2 hover:scale-110"
+        >
+            x
+        </div>
     );
 }
 

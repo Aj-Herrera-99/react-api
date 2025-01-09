@@ -30,7 +30,7 @@ function OrderPokemons({ setPokedex }) {
             </div>
             <div
                 ref={dropDownRef}
-                className="absolute z-10 hidden py-4 pl-4 pr-8 text-white rounded-md -left-4 sm:-left-24 top-14 bg-slate-800"
+                className="absolute z-20 hidden py-4 pl-4 pr-8 text-white rounded-md -right-4 sm:-left-24 top-14 bg-slate-800"
             >
                 <span>Order By:</span>
                 <select
