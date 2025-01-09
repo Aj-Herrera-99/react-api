@@ -13,6 +13,30 @@ const pokemonData = {
     },
 };
 
+// messi qui per semplicità, (da spostare in backend come db)
+const type = [
+    "normal",
+    "fire",
+    "water",
+    "grass",
+    "electric",
+    "ice",
+    "fighting",
+    "poison",
+    "ground",
+    "flying",
+    "psychic",
+    "bug",
+    "rock",
+    "ghost",
+    "dragon",
+    "dark",
+    "steel",
+    "fairy",
+];
+
+const base = ["HP", "Attack", "Defense", "Speed"];
+
 function PokemonForm({ setPokedex, setIsClicked }) {
     const [newPokemon, setNewPokemon] = useState(pokemonData);
 
@@ -20,23 +44,23 @@ function PokemonForm({ setPokedex, setIsClicked }) {
         const { name, type, value, checked } = e.target;
         const KEY = name;
         const VAL = value;
-        if (type === "text") {
-            setNewPokemon({
-                ...newPokemon,
-                [KEY]: VAL,
-            });
-        } else if (type === "checkbox") {
-            console.log(e);
-            const types = new Set([...newPokemon.type, VAL]);
-            if (!checked) {
-                types.delete(VAL);
-            }
-            setNewPokemon({ ...newPokemon, [KEY]: Array.from(types) });
-        } else if (type === "number") {
-            setNewPokemon({
-                ...newPokemon,
-                base: { ...newPokemon.base, [KEY]: VAL },
-            });
+        switch (type) {
+            case "text":
+                setNewPokemon({
+                    ...newPokemon,
+                    [KEY]: VAL,
+                });
+                break;
+            case "checkbox":
+                const setTypes = new Set([...newPokemon.type]);
+                checked ? setTypes.add(VAL) : setTypes.delete(VAL);
+                setNewPokemon({ ...newPokemon, [KEY]: Array.from(setTypes) });
+                break;
+            case "number":
+                setNewPokemon({
+                    ...newPokemon,
+                    base: { ...newPokemon.base, [KEY]: VAL },
+                });
         }
     };
 
@@ -68,268 +92,74 @@ function PokemonForm({ setPokedex, setIsClicked }) {
                     required={true}
                 />
             </div>
-            <div className="text-lg uppercase">Type:</div>
+            <label className="text-lg uppercase">Type:</label>
             <div className="grid grid-cols-3 gap-y-2 gap-x-8">
-                <div>
-                    <input
-                        type="checkbox"
-                        id="normal"
-                        name="type"
-                        value="normal"
+                {type.map((type, index) => (
+                    <TypeInput
+                        key={index}
+                        type={type}
                         onChange={handleInputChange}
                     />
-                    <label htmlFor="normal">Normal</label>
-                </div>
-
-                <div>
-                    <input
-                        type="checkbox"
-                        id="fire"
-                        name="type"
-                        value="fire"
-                        onChange={handleInputChange}
-                    />
-                    <label htmlFor="fire">Fire</label>
-                </div>
-
-                <div>
-                    <input
-                        type="checkbox"
-                        id="water"
-                        name="type"
-                        value="water"
-                        onChange={handleInputChange}
-                    />
-                    <label htmlFor="water">Water</label>
-                </div>
-
-                <div>
-                    <input
-                        type="checkbox"
-                        id="grass"
-                        name="type"
-                        value="grass"
-                        onChange={handleInputChange}
-                    />
-                    <label htmlFor="grass">Grass</label>
-                </div>
-
-                <div>
-                    <input
-                        type="checkbox"
-                        id="electric"
-                        name="type"
-                        value="electric"
-                        onChange={handleInputChange}
-                    />
-                    <label htmlFor="electric">Electric</label>
-                </div>
-
-                <div>
-                    <input
-                        type="checkbox"
-                        id="ice"
-                        name="type"
-                        value="ice"
-                        onChange={handleInputChange}
-                    />
-                    <label htmlFor="ice">Ice</label>
-                </div>
-
-                <div>
-                    <input
-                        type="checkbox"
-                        id="fighting"
-                        name="type"
-                        value="fighting"
-                        onChange={handleInputChange}
-                    />
-                    <label htmlFor="fighting">Fighting</label>
-                </div>
-
-                <div>
-                    <input
-                        type="checkbox"
-                        id="poison"
-                        name="type"
-                        value="poison"
-                        onChange={handleInputChange}
-                    />
-                    <label htmlFor="poison">Poison</label>
-                </div>
-
-                <div>
-                    <input
-                        type="checkbox"
-                        id="ground"
-                        name="type"
-                        value="ground"
-                        onChange={handleInputChange}
-                    />
-                    <label htmlFor="ground">Ground</label>
-                </div>
-
-                <div>
-                    <input
-                        type="checkbox"
-                        id="flying"
-                        name="type"
-                        value="flying"
-                        onChange={handleInputChange}
-                    />
-                    <label htmlFor="flying">Flying</label>
-                </div>
-
-                <div>
-                    <input
-                        type="checkbox"
-                        id="psychic"
-                        name="type"
-                        value="psychic"
-                        onChange={handleInputChange}
-                    />
-                    <label htmlFor="psychic">Psychic</label>
-                </div>
-
-                <div>
-                    <input
-                        type="checkbox"
-                        id="bug"
-                        name="type"
-                        value="bug"
-                        onChange={handleInputChange}
-                    />
-                    <label htmlFor="bug">Bug</label>
-                </div>
-
-                <div>
-                    <input
-                        type="checkbox"
-                        id="rock"
-                        name="type"
-                        value="rock"
-                        onChange={handleInputChange}
-                    />
-                    <label htmlFor="rock">Rock</label>
-                </div>
-
-                <div>
-                    <input
-                        type="checkbox"
-                        id="ghost"
-                        name="type"
-                        value="ghost"
-                        onChange={handleInputChange}
-                    />
-                    <label htmlFor="ghost">Ghost</label>
-                </div>
-
-                <div>
-                    <input
-                        type="checkbox"
-                        id="dragon"
-                        name="type"
-                        value="dragon"
-                        onChange={handleInputChange}
-                    />
-                    <label htmlFor="dragon">Dragon</label>
-                </div>
-
-                <div>
-                    <input
-                        type="checkbox"
-                        id="dark"
-                        name="type"
-                        value="dark"
-                        onChange={handleInputChange}
-                    />
-                    <label htmlFor="dark">Dark</label>
-                </div>
-
-                <div>
-                    <input
-                        type="checkbox"
-                        id="steel"
-                        name="type"
-                        value="steel"
-                        onChange={handleInputChange}
-                    />
-                    <label htmlFor="steel">Steel</label>
-                </div>
-
-                <div>
-                    <input
-                        type="checkbox"
-                        id="fairy"
-                        name="type"
-                        value="fairy"
-                        onChange={handleInputChange}
-                    />
-                    <label htmlFor="fairy">Fairy</label>
-                </div>
+                ))}
             </div>
-            <div className="text-lg uppercase">Base:</div>
+            <label className="text-lg uppercase">Base:</label>
             <div className="flex flex-wrap gap-6">
-                <div className="flex items-center gap-2">
-                    <label htmlFor="hp">HP:</label>
-                    <input
-                        type="number"
-                        id="hp"
-                        name="HP"
-                        min={1}
-                        max={250}
-                        className="p-1 rounded-md w-[50px]"
+                {base.map((base, index) => (
+                    <BaseInput
+                        key={index}
+                        el={base}
                         onChange={handleInputChange}
-                        required={true}
                     />
-                </div>
-                <div className="flex items-center gap-2">
-                    <label htmlFor="attack">Attack:</label>
-                    <input
-                        type="number"
-                        id="attack"
-                        name="Attack"
-                        min={1}
-                        max={250}
-                        className="p-1 rounded-md w-[50px]"
-                        onChange={handleInputChange}
-                        required={true}
-                    />
-                </div>
-                <div className="flex items-center gap-2">
-                    <label htmlFor="defense">Defense:</label>
-                    <input
-                        type="number"
-                        id="defense"
-                        name="Defense"
-                        min={1}
-                        max={250}
-                        className="p-1 rounded-md w-[50px]"
-                        onChange={handleInputChange}
-                        required={true}
-                    />
-                </div>
-                <div className="flex items-center gap-2">
-                    <label htmlFor="speed">Speed:</label>
-                    <input
-                        type="number"
-                        id="speed"
-                        name="Speed"
-                        min={1}
-                        max={250}
-                        className="p-1 rounded-md w-[50px]"
-                        onChange={handleInputChange}
-                        required={true}
-                    />
-                </div>
+                ))}
             </div>
-            <button
-                type="submit"
-                className="px-8 py-3 mx-auto mt-4 rounded-2xl bg-slate-900 w-fit"
-            >
-                Generate Pokemon
-            </button>
+            <SubmitBtn>Generate Pokemon</SubmitBtn>
         </form>
+    );
+}
+
+function TypeInput({ type, onChange }) {
+    return (
+        <div className="flex gap-1">
+            <input
+                type="checkbox"
+                id={type}
+                name="type"
+                value={type}
+                onChange={onChange}
+            />
+            <label htmlFor={type} className="capitalize">
+                {type}
+            </label>
+        </div>
+    );
+}
+
+function BaseInput({ el: base, onChange }) {
+    return (
+        <div className="flex items-center gap-2">
+            <label htmlFor={base}>{base}:</label>
+            <input
+                type="number"
+                id={base}
+                name={base}
+                min={1}
+                max={250}
+                className="p-1 rounded-md w-[50px]"
+                onChange={onChange}
+                required={true}
+            />
+        </div>
+    );
+}
+
+function SubmitBtn({ children }) {
+    return (
+        <button
+            type="submit"
+            className="px-8 py-3 mx-auto mt-4 rounded-2xl bg-slate-900 w-fit"
+        >
+            {children}
+        </button>
     );
 }
 
